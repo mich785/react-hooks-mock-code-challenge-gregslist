@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Search from "./Search";
+import ListingsContainer from "./ListingsContainer";
 
 function Header() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
   return (
     <header>
       <h1>
@@ -10,9 +17,15 @@ function Header() {
         </span>
         gregslist
       </h1>
-      <Search />
+      <Search onSearch={handleSearch} />
     </header>
   );
 }
 
 export default Header;
+
+
+
+
+
+

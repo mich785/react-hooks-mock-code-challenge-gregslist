@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 function ListingCard({ listing, onDelete }) {
   const [isFavorited, setIsFavorited] = useState(false);
   const handleFavorite = () => {
@@ -14,6 +15,7 @@ function ListingCard({ listing, onDelete }) {
     })
     .catch(error => console.log(error));
   };
+
   return (
     <li className="card">
       <div className="image">
@@ -39,7 +41,7 @@ function ListingCard({ listing, onDelete }) {
         <button
           className="emoji-button delete"
           onClick={handleDeleteClick}>
-           :wastebasket:
+           🗑
         </button>
       </div>
     </li>

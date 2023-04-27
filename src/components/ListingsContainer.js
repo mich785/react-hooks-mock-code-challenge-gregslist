@@ -1,11 +1,13 @@
 import React from "react";
 import ListingCard from "./ListingCard";
+
 function ListingsContainer({ data }) {
-  
   const { listings, onRemoveListing } = data;
-  const handleDelete = (id) => {
+ 
+  function handleDelete (id)  {
     onRemoveListing(id);
   };
+
   return (
     <main>
       <ul className="cards">

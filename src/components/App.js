@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from "react";
 import Header from "./Header";
 import ListingsContainer from "./ListingsContainer";
+
 function App() {
   const [listings, setListings] = useState([]);
   useEffect(() => {
@@ -15,10 +16,17 @@ function App() {
       console.error('Error fetching transactions:', error);
     });
   }, []);
+
+  const handleRemoveListing = (id) => {
+    const updatedListings = listings.filter((listing) => listing.id !== id);
+    setListings(updatedListings);
+  };
+
   return (
     <div className="app">
       <Header />
-      <ListingsContainer data={{ listings: listings }}/>
+      <ListingsContainer data={{ listings: listings }}
+       onRemoveListing={handleRemoveListing}/>
     </div>
   );
 }
