@@ -1,13 +1,19 @@
 import React, { useState } from "react";
-
 function ListingCard({ listing, onDelete }) {
   const [isFavorited, setIsFavorited] = useState(false);
-
   const handleFavorite = () => {
     setIsFavorited(!isFavorited);
   };
-
-
+  const handleDeleteClick = () => {
+    fetch(`http://localhost:6001/listings/${listing.id}`, {
+      method: "DELETE"
+    })
+    .then(response => response.json())
+    .then(data => {
+      onDelete(data.id)
+    })
+    .catch(error => console.log(error));
+  };
   return (
     <li className="card">
       <div className="image">
@@ -18,15 +24,13 @@ function ListingCard({ listing, onDelete }) {
         {isFavorited ? (
           <button
             className="emoji-button favorite active"
-            onClick={handleFavorite}
-          >
+            onClick={handleFavorite}>
             ★
           </button>
         ) : (
           <button
             className="emoji-button favorite"
-            onClick={handleFavorite}
-          >
+            onClick={handleFavorite}>
             ☆
           </button>
         )}
@@ -34,12 +38,11 @@ function ListingCard({ listing, onDelete }) {
         <span> · {listing.location}</span>
         <button
           className="emoji-button delete"
-        >
-          🗑
+          onClick={handleDeleteClick}>
+           :wastebasket:
         </button>
       </div>
     </li>
   );
 }
-
-export default ListingCard;
+export default ListingCard
