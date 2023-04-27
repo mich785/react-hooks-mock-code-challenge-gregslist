@@ -16,7 +16,7 @@ function Search({onSearch}) {
         type="text"
         id="search"
         placeholder="search free stuff"
-        value={""}
+        value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
       <button type="submit">🔍</button>

@@ -3,7 +3,8 @@ import ListingCard from "./ListingCard";
 
 function ListingsContainer({ data }) {
   const { listings, onRemoveListing } = data;
- 
+  const sortedListings = listings.sort((a, b) => a.location.localeCompare(b.location));
+
   function handleDelete (id)  {
     onRemoveListing(id);
   };
@@ -11,7 +12,7 @@ function ListingsContainer({ data }) {
   return (
     <main>
       <ul className="cards">
-        {listings.map((listing) => (
+        {sortedListings.map((listing) => (
           <ListingCard
             key={listing.id}
             listing={listing}
